@@ -1,0 +1,121 @@
+.lineEdit, .lineEditHeader {
+    /*height: 1.5em;*/
+    text-align: left;
+    font-size: 16px;
+    color: darkblue;
+    background-color: rgba(236, 228, 228, 0);
+    display: block;
+
+    /*min-width: 1150px;*/
+
+
+   /* list-style-type: disc;*/
+  /*  margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;*/
+    border: 1px solid rgba(236, 228, 228, 0.82);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 1px 1px 2px rgba(36, 31, 31, 0.22);
+
+}
+.lineEdit:hover {
+    background-color: rgba(172, 206, 239, 0.46);
+}
+h3 {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: darkblue;
+    margin-block-start: 2px;
+    margin-block-end: 2px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.contentProduct {
+
+    display: inline-flex;
+    width: 100%;
+
+}
+.listProduct{
+    color: darkblue;
+    padding-inline-start: 0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    display: block;
+    width: 100%;
+}
+
+.findEdit {
+
+    font-family: sans-serif;
+    font-size: 16px;
+    margin: 5px;
+    margin-right: 10px;
+    padding: 0px;
+    color: darkblue;
+    display:block;
+    text-align: center;
+    justify-content: left;
+}
+
+.findEditButton{
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.buttonFind{
+    margin-left: 10px;
+}
+.findRowEdit{
+
+    display: block;
+    width: 250px;
+}
+
+.glabelIndex, .glabelName{
+    padding: 3px;
+    margin: 5px;
+    width: 50px;
+    text-align: center;
+    display: inline-block
+}
+.glabelName{
+    min-width: 50%;
+}
+
+.glabelIndex{
+    min-width: 10%;
+}
+.addStudentButtonGroup{
+    padding: 3px;
+    margin: 5px;
+    width: 30px;
+    text-align: left;
+}
+.newGroupCard{
+    text-align: left;
+    font-size: 16px;
+    display: block;
+
+    border: 1px solid rgba(236, 228, 228, 0.82);
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 1px 1px 2px rgba(36, 31, 31, 0.22);
+
+    justify-content: center;
+    width: 100%;
+    background-color: rgba(236, 228, 228, 0);
+
+
+    padding: 16px;
+    font-family: monospace;
+    color: #231ea8;
+    margin: 3px;
+    textAlign: "center";
+
+}
+
+
+
+

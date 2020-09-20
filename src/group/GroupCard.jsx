@@ -2,6 +2,7 @@ import React from 'react';
 import './styleGroup.css';
 import StudentRow from "../student/StudentRow";
 import {withRouter} from 'react-router';
+import * as urlConst from'../constPath.jsx';
 
 class GropupCard extends React.Component {
 
@@ -10,10 +11,6 @@ class GropupCard extends React.Component {
         super(props);
         this.state = {
             id: props.match.params.groupId,
-            urlDatabase:"http://localhost:8090/",
-            urlThis:"http://localhost:8080/",
-            urlGetid:"group?id=",
-            urlGetStudent:"student/group?id=",
             data: [],
             list: [],
             isExists : false,
@@ -27,15 +24,15 @@ class GropupCard extends React.Component {
     }
     async componentDidMount() {
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetid + `${this.state.id}` );
-
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetid + `${this.state.id}` );
+            console.log(response);
             if (response.ok){
                 this.setState({data: await response.json(), isData: true});
                 this.state.isExists = true;
             }
             else {this.state.isExists = false; }
 
-            let response2 = await fetch(this.state.urlDatabase+this.state.urlGetStudent + `${this.state.data.groupId}` );
+            let response2 = await fetch(urlConst.urlDatabase+urlConst.urlGetStudent + `${this.state.data.groupId}` );
             if (response2.ok){
                 this.setState({list: await response2.json(), isData: true});
                 this.state.isExists1 = true;
@@ -59,17 +56,12 @@ class GropupCard extends React.Component {
     printAllLines(props) {
 
         const arr = this.state.list;
-        const urlDatabase = this.state.urlThis;
+        const urlDatabase = urlConst.urlThis;
 
         if (this.state.isExists === false)
             return  ( <div className="cardStudent">
                 Ошибка загрузки студентов группы
             </div>)
-
-     /*   return (
-            arr.map( function(group, index) {
-                return  <GroupRow key={index} index={index} prod={group} idStudent = {group.id} urlDatabase={urlDatabase}/>})
-        )*/
 
         console.log(arr);
         return (
@@ -111,8 +103,6 @@ class GropupCard extends React.Component {
                         <span className="labelIndex">№ группы</span>
                         <span className="labelCreateDate">Дата рождения</span>
                     </div>
-
-
 
                     <div >
                         <this.printAllLines/>

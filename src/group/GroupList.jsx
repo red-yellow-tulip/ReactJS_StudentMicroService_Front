@@ -3,6 +3,7 @@ import './styleGroup.css';
 import GroupRow from "./GroupRow";
 import FiltrGroup from "./FiltrGroup";
 import "regenerator-runtime/runtime";
+import * as urlConst from'../constPath.jsx';
 
 
 class GroupList extends React.Component{
@@ -11,10 +12,6 @@ class GroupList extends React.Component{
         super(props);
 
         this.state = {
-            urlDatabase:"http://localhost:8090/",
-            urlThis:"http://localhost:8080/",
-            urlGetAll:"group/all",
-            urlGetFiltr:"group/filtr?name=",
             isData: true,
             data: []
         }
@@ -24,7 +21,7 @@ class GroupList extends React.Component{
 
     async componentDidMount() {
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetAll);
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetAllGroup);
             if (response.ok){
                 console.log(response);
                 this.setState({data: await response.json(), isData: true});
@@ -38,10 +35,16 @@ class GroupList extends React.Component{
     }
 
     async selectFiltrData(name) {
-        let params = this.state.urlDatabase+this.state.urlGetFiltr+`${name}`;
+        let params = urlConst.urlDatabase+urlConst.urlGetFiltr+`${name}`;
         console.log(params);
         try {
-            let response = await fetch(params);
+            let response = await fetch(params,
+                {method:"get",
+                            headers:{
+                            'Accept':'application/json,text/plain,*!/!*',
+                                'Content-Type':'application/json' }
+                                }
+            );
             this.setState({data: await response.json()});
         } catch (e) {
             console.log(e);
@@ -51,11 +54,9 @@ class GroupList extends React.Component{
     printAllLines(props) {
 
         const arr = this.state.data;
-        const urlDatabase = this.state.urlThis;
-        console.log(urlDatabase);
         return (
             arr.map( function(group, index) {
-                return  <GroupRow key={index} index={index} prod={group} idStudent = {group.id} urlDatabase={urlDatabase}/>})
+                return  <GroupRow key={index} index={index} prod={group} idStudent = {group.id} urlDatabase={urlConst.urlThis}/>})
             )
     }
 

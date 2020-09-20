@@ -2,6 +2,7 @@ import React from 'react';
 import './styleGroup.css';
 import {withRouter} from 'react-router';
 
+
 class FiltrGroup extends React.Component{
 
     constructor (props){
@@ -32,7 +33,6 @@ class FiltrGroup extends React.Component{
 
     changeName(event){
         let t = event.target.value;
-        console.log("t==="+t);
         this.setState({ name: t });
         this.state.findEvent(t);
     }

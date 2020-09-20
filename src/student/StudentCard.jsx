@@ -1,6 +1,7 @@
 import React from 'react';
 import './styleStudent.css';
 import {withRouter} from 'react-router';
+import * as urlConst from'../constPath.jsx';
 
 class StudentCard extends React.Component {
 
@@ -9,9 +10,6 @@ class StudentCard extends React.Component {
         super(props);
         this.state = {
             id: props.match.params.studentId,
-            urlDatabase:"http://localhost:8090/",
-            urlGetid:"student?id=",
-            urlDel:"student/delete?",
             data: []
         };
         this.buttonEdit = this.buttonEdit.bind(this);
@@ -22,7 +20,7 @@ class StudentCard extends React.Component {
 
     async componentDidMount() {
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetid + `${this.state.id}` );
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetidStudent + `${this.state.id}` );
             if (response.ok){
                 this.setState({data: await response.json(), isData: true});
                 this.state.isExists = true;
@@ -58,7 +56,7 @@ class StudentCard extends React.Component {
         console.log(this.state.id);
         let isDelete = false;
         try {
-            let path = this.state.urlDatabase+this.state.urlDel +
+            let path = urlConst.urlDatabase+urlConst.urlDel +
                 `name=${this.state.data.name}`+
                 `&sname=${this.state.data.surname}`;
             console.log(path);

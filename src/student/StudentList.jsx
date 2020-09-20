@@ -3,6 +3,7 @@ import './styleStudent.css';
 import StudentRow from "./StudentRow";
 import FiltrStudent from "./FiltrStudent";
 import "regenerator-runtime/runtime";
+import * as urlConst from'../constPath.jsx';
 
 
 class StudentList extends React.Component{
@@ -11,10 +12,6 @@ class StudentList extends React.Component{
         super(props);
 
         this.state = {
-            urlDatabase:"http://localhost:8090/",
-            urlThis:"http://localhost:8080/",
-            urlGetAll:"student/all",
-            urlGetFiltr:"student/filtr?",
             isData: true,
             data: [],
 
@@ -28,7 +25,7 @@ class StudentList extends React.Component{
     async componentDidMount() {
 
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetAll);
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlAllStudent);
             if (response.ok){
                 this.setState({data: await response.json(), isData: true});
             }
@@ -41,7 +38,7 @@ class StudentList extends React.Component{
     }
 
     async selectFiltrData(name,surname) {
-        let params = this.state.urlDatabase+this.state.urlGetFiltr+`name=${name}&sname=${surname}`;
+        let params = urlConst.urlDatabase+urlConst.urlGetFiltrStudent+`name=${name}&sname=${surname}`;
         console.log(params);
         try {
             let response = await fetch(params);
@@ -55,7 +52,7 @@ class StudentList extends React.Component{
     printAllLines(props) {
 
         const arr = this.state.data;
-        const urlDatabase = this.state.urlThis;
+        const urlDatabase = urlConst.urlThis;
         const f = this.buttonClick;
         return (
             arr.map( function(student, index) {

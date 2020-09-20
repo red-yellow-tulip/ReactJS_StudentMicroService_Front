@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import * as urlConst from'../constPath.jsx';
 
 
 class CreateGroup extends React.Component {
@@ -7,9 +8,7 @@ class CreateGroup extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            id: props.match.params.studentId,
-            urlDatabase:"http://localhost:8090/",
-            urlAdd:"group/add",
+            id: props.match.params.studentIdw
         };
 
         this.buttonCreate = this.buttonCreate.bind(this);
@@ -26,7 +25,7 @@ class CreateGroup extends React.Component {
             groupName:nam
         }
 
-        let path = this.state.urlDatabase+this.state.urlAdd;
+        let path = urlConst.urlDatabase+urlConst.urlAddGroup;
         console.log(data);
         try {
             let response = await fetch(path,

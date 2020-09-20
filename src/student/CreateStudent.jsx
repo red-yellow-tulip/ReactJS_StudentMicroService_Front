@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import * as urlConst from'../constPath.jsx';
 
 
 class CreateStudent extends React.Component {
@@ -8,10 +9,6 @@ class CreateStudent extends React.Component {
         super(props);
         this.state = {
             id: props.match.params.studentId,
-            urlDatabase:"http://localhost:8090/",
-            urlThis:"http://localhost:8080/",
-            urlGetAll:"group/all",
-            urlAdd:"student?id=",
             groupList: [],
             selectGroup:null,
             groupId: null,
@@ -23,7 +20,7 @@ class CreateStudent extends React.Component {
 
     async componentDidMount() {
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetAll);
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetAllGroup);
             if (response.ok){
                 console.log(response);
                 this.setState({groupList: await response.json(), isData: true});
@@ -58,7 +55,7 @@ class CreateStudent extends React.Component {
             dateBirth:bSt
         }
 
-        let path = this.state.urlDatabase+this.state.urlAdd +`${this.state.groupIdsecond}`;
+        let path =urlConst.urlDatabase+urlConst.urlAddStudent +`${this.state.groupIdsecond}`;
 
         try {
             let response = await fetch(path,

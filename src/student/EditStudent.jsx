@@ -1,5 +1,6 @@
 import React from 'react';
 import {withRouter} from 'react-router';
+import * as urlConst from'../constPath.jsx';
 
 
 class CreateStudent extends React.Component {
@@ -8,11 +9,7 @@ class CreateStudent extends React.Component {
         super(props);
         this.state = {
             id: props.match.params.studentId,
-            urlDatabase:"http://localhost:8090/",
-            urlGetidStudent:"student?id=",
-            urlPutidStudent:"student?id=",
             data: [],
-            urlGetAll:"group/all",
             groupList: [],
             groupId: null,
             groupIdsecond: null,
@@ -28,7 +25,7 @@ class CreateStudent extends React.Component {
 
     async componentDidMount() {
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetidStudent + `${this.state.id}` );
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetidStudent + `${this.state.id}` );
 
             if (response.ok){
                 this.setState({data: await response.json()});
@@ -43,7 +40,7 @@ class CreateStudent extends React.Component {
         }
 
         try {
-            let response = await fetch(this.state.urlDatabase+this.state.urlGetAll);
+            let response = await fetch(urlConst.urlDatabase+urlConst.urlGetAllGroup);
             if (response.ok){
 
                 this.setState({groupList: await response.json()});
@@ -101,7 +98,7 @@ class CreateStudent extends React.Component {
         }
         console.log(newData);
 
-        let path = this.state.urlDatabase+this.state.urlPutidStudent +`${newData.id}`;
+        let path = urlConst.urlDatabase+urlConst.urlPutidStudent +`${newData.id}`;
 
         try {
             let response = await fetch(path,
